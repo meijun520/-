@@ -1,0 +1,73 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe C:\Users\tky\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add v1.21.1
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;D:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\TortoiseSVN\bin;C:\Users\tky\AppData\Local\Microsoft\WindowsApps;;d:\Users\tky\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\tky\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  14.16.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/v1.21.1: Not found
+      at Request.params.callback [as _callback] (C:\Users\tky\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66138:18)
+      at Request.self.callback (C:\Users\tky\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Users\tky\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Users\tky\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "private": true,
+    "scripts": {
+      "start": "umi dev",
+      "build": "umi build",
+      "postinstall": "umi generate tmp",
+      "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+      "test": "umi-test",
+      "test:coverage": "umi-test --coverage"
+    },
+    "gitHooks": {
+      "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+      "*.{js,jsx,less,md,json}": [
+        "prettier --write"
+      ],
+      "*.ts?(x)": [
+        "prettier --parser=typescript --write"
+      ]
+    },
+    "dependencies": {
+      "@ant-design/pro-layout": "^6.5.0",
+      "react": "17.x",
+      "react-dom": "17.x",
+      "umi": "^3.5.23"
+    },
+    "devDependencies": {
+      "@types/react": "^17.0.0",
+      "@types/react-dom": "^17.0.0",
+      "@umijs/preset-react": "1.x",
+      "@umijs/test": "^3.5.23",
+      "lint-staged": "^10.0.7",
+      "prettier": "^2.2.0",
+      "typescript": "^4.1.2",
+      "yorkie": "^2.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
