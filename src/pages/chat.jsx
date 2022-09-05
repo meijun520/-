@@ -2,6 +2,32 @@ import style from './index.less';
 import socketio from 'socket.io-client';
 import React, { useState, useEffect } from 'react';
 import { history } from 'umi';
+class LeftMeaaage extends React.Component {
+  render() {
+    return (
+      <div className={style.cler1}>
+        <div className={style.icon}>{this.props.name}</div>
+        <div className={style.mess}>
+          <div className={style.bacright}></div>
+          <div>{this.props.message}</div>
+        </div>
+      </div>
+    );
+  }
+}
+class RightMeaaage extends React.Component {
+  render() {
+    return (
+      <div className={style.cler2}>
+        <div className={style.mess}>
+          <div>{this.props.message}</div>
+          <div className={style.bacleft}></div>
+        </div>
+        <div className={style.icon}>{this.props.name}</div>
+      </div>
+    );
+  }
+}
 export default function WeChat() {
   const [list, setList] = useState([]);
   const [message, setMessage] = useState('');
@@ -53,20 +79,15 @@ export default function WeChat() {
         {history.location.query.user}
       </div>
       <div className={style.right}>
-        <ul className={style.messages} id="mes">
-          {list.map((item, index) => (
-            <li
-              key={index}
-              className={
-                user == item.name ? style.chartlistright : style.chartlistleft
-              }
-            >
-              {user == item.name
-                ? item.message + item.name + ':'
-                : item.name + ':' + item.message}
-            </li>
-          ))}
-        </ul>
+        <div className={style.messages} id="mes">
+          {list.map((item, index) =>
+            user == item.name ? (
+              <RightMeaaage name={item.name} message={item.message} />
+            ) : (
+              <LeftMeaaage name={item.name} message={item.message} />
+            ),
+          )}
+        </div>
         <div className={style.form}>
           <input
             type="text"

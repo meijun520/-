@@ -1,43 +1,71 @@
-
-
 .title {
   background: rgb(121, 242, 157);
 }
 
-.chat{
+.chat {
   display: flex;
-  .left{
+  .left {
     width: 100px;
     height: 100vh;
     background: blue;
     color: #fff;
   }
-  .form{
+  .form {
     position: fixed;
-    left:100px;
+    left: 100px;
     bottom: 0px;
     width: 100%;
     padding: 10px;
-    input{
+    input {
       width: 90%;
     }
-    button{
-      background: #FE6A00;
+    button {
+      background: #fe6a00;
     }
-    
   }
-  .right{
+  .right {
     width: 90%;
-
-    .chartlistleft{
+    .cler1 {
       display: flex;
-    justify-content: flex-start;
+      margin-top: 10px;
     }
-    .chartlistright{
+    .cler2 {
       display: flex;
       justify-content: flex-end;
+      margin-top: 10px;
+    }
+    .icon {
+      height: 50px;
+      width: 50px;
+      border: 1px solid black;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    .mess {
+      background-color: #b2e281;
+      margin: 0px 10px;
+      padding: 10px 10px 10px 10px;
+      border-radius: 7px;
+      position: relative;
+    }
+    .bacleft {
+      height: 0px;
+      width: 0px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent transparent transparent #b2e281;
+      position: absolute;
+      right: -12px;
+    }
+    .bacright {
+      height: 0px;
+      width: 0px;
+      border-width: 6px;
+      border-style: solid;
+      border-color: transparent #b2e281 transparent transparent;
+      position: absolute;
+      left: -12px;
     }
   }
- 
 }
-
