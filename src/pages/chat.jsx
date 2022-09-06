@@ -5,11 +5,16 @@ import { history } from 'umi';
 class LeftMeaaage extends React.Component {
   render() {
     return (
-      <div className={style.cler1}>
-        <div className={style.icon}>{this.props.name}</div>
-        <div className={style.mess}>
-          <div className={style.bacright}></div>
-          <div>{this.props.message}</div>
+      <div>
+        <div className={this.props.time ? style.timebac : ''}>
+          {this.props.time}
+        </div>
+        <div className={style.cler1}>
+          <div className={style.icon}>{this.props.name}</div>
+          <div className={style.mess}>
+            <div className={style.bacright}></div>
+            <div>{this.props.message}</div>
+          </div>
         </div>
       </div>
     );
@@ -18,12 +23,17 @@ class LeftMeaaage extends React.Component {
 class RightMeaaage extends React.Component {
   render() {
     return (
-      <div className={style.cler2}>
-        <div className={style.mess}>
-          <div>{this.props.message}</div>
-          <div className={style.bacleft}></div>
+      <div>
+        <div className={this.props.time ? style.timebac : ''}>
+          {this.props.time}
         </div>
-        <div className={style.icon}>{this.props.name}</div>
+        <div className={style.cler2}>
+          <div className={style.mess}>
+            <div>{this.props.message}</div>
+            <div className={style.bacleft}></div>
+          </div>
+          <div className={style.icon}>{this.props.name}</div>
+        </div>
       </div>
     );
   }
@@ -41,10 +51,34 @@ export default function WeChat() {
       transports: ['websocket'],
     });
     console.log(io.id);
-    io.on('pushMsg', function (msg) {
-      list.push(msg);
-      setList([...list]);
-      console.log(list, 8888);
+    let messageList = [];
+    io.on('pushMsg', function (msg, time) {
+      messageList.push({ ...msg, time: time });
+      let nowlist = [];
+      for (let i = 0; i < messageList.length; i++) {
+        let a = new Date(messageList[i].time);
+        let s = a.getHours();
+        let f = a.getMinutes();
+        if (i > 1) {
+          console.log(messageList[i], 6666);
+          let usedTime =
+            new Date(messageList[i].time).getTime() -
+            new Date(messageList[i - 1].time).getTime();
+          console.log(usedTime, 6666);
+          if (usedTime > 60000) {
+            nowlist.push({ ...messageList[i], time: `${s}:${f}` });
+            console.log(list, 8888);
+          } else {
+            nowlist.push({ ...messageList[i], time: '' });
+          }
+          setList([...nowlist]);
+          console.log(list, 8888);
+        } else {
+          nowlist.push({ ...messageList[i], time: `${s}:${f}` });
+          setList([...nowlist]);
+          console.log(list, 8888);
+        }
+      }
     });
     io.on('countmsg', function (msg) {
       setCount(msg);
@@ -82,9 +116,17 @@ export default function WeChat() {
         <div className={style.messages} id="mes">
           {list.map((item, index) =>
             user == item.name ? (
-              <RightMeaaage name={item.name} message={item.message} />
+              <RightMeaaage
+                name={item.name}
+                message={item.message}
+                time={item.time}
+              />
             ) : (
-              <LeftMeaaage name={item.name} message={item.message} />
+              <LeftMeaaage
+                name={item.name}
+                message={item.message}
+                time={item.time}
+              />
             ),
           )}
         </div>
